@@ -45,10 +45,13 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-
+        setContentView(R.layout.loading);
+        /*
         if (resultCode == RESULT_OK) {
             Bitmap b = (Bitmap) data.getExtras().get("data");
             myImage.setImageBitmap(b);
         }
+        */
+
     }
 }
