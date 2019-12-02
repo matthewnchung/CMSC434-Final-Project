@@ -36,8 +36,6 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-
-
     }
 
     private void takePicture() {
@@ -55,8 +53,16 @@ public class MainActivity extends AppCompatActivity {
         ObjectAnimator.ofInt(progress, "progress", 100)
                         .setDuration(3000)
                         .start();
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                /* Create an Intent that will load the fonts page after the loading bar. */
+                setContentView(R.layout.loading);
 
-
+            }
+        }, 4000);
 
     }
+
+
 }
