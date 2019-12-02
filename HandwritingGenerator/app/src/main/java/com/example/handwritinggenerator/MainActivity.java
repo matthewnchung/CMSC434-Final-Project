@@ -3,6 +3,7 @@ package com.example.handwritinggenerator;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.animation.ObjectAnimator;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
@@ -10,6 +11,7 @@ import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -45,13 +47,12 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        setContentView(R.layout.loading);
-        /*
-        if (resultCode == RESULT_OK) {
-            Bitmap b = (Bitmap) data.getExtras().get("data");
-            myImage.setImageBitmap(b);
-        }
-        */
+        setContentView(R.layout.loading_bar_screen);
+
+        ProgressBar progress = (ProgressBar) findViewById(R.id.progressBar);
+        ObjectAnimator.ofInt(progress, "progress", 100)
+                .setDuration(3000)
+                .start();
 
     }
 }
