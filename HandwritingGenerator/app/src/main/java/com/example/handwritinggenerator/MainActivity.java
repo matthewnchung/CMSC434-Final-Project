@@ -16,6 +16,8 @@ public class MainActivity extends AppCompatActivity {
     private ImageView myImage;
     private Button button;
 
+    // james' comment
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,8 +30,11 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 takePicture();
+
             }
         });
+
+
     }
 
     private void takePicture() {
@@ -40,10 +45,13 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-
+        setContentView(R.layout.loading);
+        /*
         if (resultCode == RESULT_OK) {
             Bitmap b = (Bitmap) data.getExtras().get("data");
             myImage.setImageBitmap(b);
         }
+        */
+
     }
 }
