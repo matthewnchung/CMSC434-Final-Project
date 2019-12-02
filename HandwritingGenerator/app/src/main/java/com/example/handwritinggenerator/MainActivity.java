@@ -30,8 +30,11 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 takePicture();
+
             }
         });
+
+
     }
 
     private void takePicture() {
