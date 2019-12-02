@@ -7,6 +7,7 @@ import android.animation.ObjectAnimator;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.os.Handler;
 import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
@@ -49,10 +50,13 @@ public class MainActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         setContentView(R.layout.loading_bar_screen);
 
-        ProgressBar progress = (ProgressBar) findViewById(R.id.progressBar);
+        final ProgressBar progress = (ProgressBar) findViewById(R.id.progressBar);
+
         ObjectAnimator.ofInt(progress, "progress", 100)
-                .setDuration(3000)
-                .start();
+                        .setDuration(3000)
+                        .start();
+
+
 
     }
 }
