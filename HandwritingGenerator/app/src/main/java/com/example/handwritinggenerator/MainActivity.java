@@ -18,6 +18,7 @@ public class MainActivity extends AppCompatActivity {
 
     private ImageView myImage;
     private Button button;
+    private Button saved_fonts;
 
     // james' comment
 
@@ -28,7 +29,13 @@ public class MainActivity extends AppCompatActivity {
 
         myImage = (ImageView) findViewById(R.id.myImage);
         button = (Button) findViewById(R.id.button);
-
+        saved_fonts = (Button) findViewById(R.id.saved_fonts);
+        saved_fonts.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                saved_fonts();
+            }
+        });
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -42,6 +49,37 @@ public class MainActivity extends AppCompatActivity {
         Intent i = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         startActivityForResult(i,0);
     }
+
+    private void saved_fonts() {
+        setContentView(R.layout.saved_fonts);
+
+        Button font1 = (Button) findViewById(R.id.font1);
+
+        font1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                setContentView(R.layout.loading_bar_screen);
+                final ProgressBar progress = (ProgressBar) findViewById(R.id.progressBar);
+
+                ObjectAnimator.ofInt(progress, "progress", 100)
+                        .setDuration(3000)
+                        .start();
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        /* Create an Intent that will load the fonts page after the loading bar. */
+                        setContentView(R.layout.loading);
+
+                    }
+                }, 4000);
+            }
+        });
+
+
+
+
+    }
+
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
