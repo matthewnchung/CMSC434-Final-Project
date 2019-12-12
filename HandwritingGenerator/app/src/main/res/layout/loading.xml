@@ -240,4 +240,15 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="16dp"
         android:text="Font ###" />
+
+    <Button
+        android:id="@+id/bigone"
+        android:layout_width="321dp"
+        android:layout_height="650dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="73dp"
+        android:text="Button"
+        android:color="#FFFFFFFF"
+        android:alpha="0.00"/>
 </RelativeLayout>

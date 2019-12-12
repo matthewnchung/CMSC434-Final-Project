@@ -25,7 +25,12 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        mainScreen();
 
+    }
+
+    private void mainScreen() {
+        setContentView(R.layout.activity_main);
         myImage = (ImageView) findViewById(R.id.myImage);
         button = (Button) findViewById(R.id.button);
         saved_fonts = (Button) findViewById(R.id.saved_fonts);
@@ -49,25 +54,16 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-
     private void takePicture() {
         Intent i = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         startActivityForResult(i,0);
     }
 
     private void characters() {
-        setContentView(R.layout.loading_bar_screen);
-        final ProgressBar progress = (ProgressBar) findViewById(R.id.progressBar);
 
-        ObjectAnimator.ofInt(progress, "progress", 100)
-                .setDuration(3000)
-                .start();
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                /* Create an Intent that will load the fonts page after the loading bar. */
                 setContentView(R.layout.loading);
                 Button back = (Button) findViewById(R.id.back_share);
+                Button edit = (Button) findViewById(R.id.bigone);
                 Button share = (Button) findViewById(R.id.share);
                 back.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -81,9 +77,41 @@ public class MainActivity extends AppCompatActivity {
                         share();
                     }
                 });
+                edit.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        editChar();
+                    }
+                });
 
+
+    }
+
+    private void editChar() {
+        setContentView(R.layout.editchar);
+        Button retake = (Button) findViewById(R.id.retake);
+        Button upload = (Button) findViewById(R.id.upload);
+        Button back_edit = (Button) findViewById(R.id.back_edit);
+        retake.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                startActivity(i);
             }
-        }, 4000);
+        });
+        upload.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mainScreen();
+            }
+        });
+        back_edit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                characters();
+            }
+        });
+
 
     }
 
@@ -93,7 +121,7 @@ public class MainActivity extends AppCompatActivity {
         back_profile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                setContentView(R.layout.activity_main);
+                mainScreen();
             }
         });
     }
@@ -110,13 +138,18 @@ public class MainActivity extends AppCompatActivity {
     private void saved_fonts() {
         setContentView(R.layout.saved_fonts);
         Button font1 = (Button) findViewById(R.id.font1);
+        Button back_saved_fonts = (Button) findViewById(R.id.back_saved_fonts);
         font1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 characters();
             }
         });
-
+        back_saved_fonts.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mainScreen();            }
+        });
     }
 
     @Override
@@ -127,16 +160,14 @@ public class MainActivity extends AppCompatActivity {
         final ProgressBar progress = (ProgressBar) findViewById(R.id.progressBar);
 
         ObjectAnimator.ofInt(progress, "progress", 100)
-                        .setDuration(3000)
+                        .setDuration(1000)
                         .start();
-        new Handler().postDelayed(new Runnable() {
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                /* Create an Intent that will load the fonts page after the loading bar. */
-                setContentView(R.layout.loading);
-
-            }
-        }, 4000);
+                characters();
+            }},1000);
 
     }
 
