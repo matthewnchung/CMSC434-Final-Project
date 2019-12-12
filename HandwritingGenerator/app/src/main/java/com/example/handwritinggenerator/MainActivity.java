@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.animation.ObjectAnimator;
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.os.Handler;
 import android.provider.MediaStore;
@@ -40,7 +39,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 takePicture();
-
             }
         });
     }
@@ -50,33 +48,57 @@ public class MainActivity extends AppCompatActivity {
         startActivityForResult(i,0);
     }
 
+    private void characters() {
+        setContentView(R.layout.loading_bar_screen);
+        final ProgressBar progress = (ProgressBar) findViewById(R.id.progressBar);
+
+        ObjectAnimator.ofInt(progress, "progress", 100)
+                .setDuration(3000)
+                .start();
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                /* Create an Intent that will load the fonts page after the loading bar. */
+                setContentView(R.layout.loading);
+                Button back = (Button) findViewById(R.id.back_share);
+                Button share = (Button) findViewById(R.id.share);
+                back.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        saved_fonts();
+                    }
+                });
+                share.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        share();
+                    }
+                });
+
+            }
+        }, 4000);
+
+    }
+
+    private void share() {
+        setContentView(R.layout.share);
+        Button back_share = (Button) findViewById(R.id.back_share);
+        back_share.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                characters();
+            }
+        });
+    }
     private void saved_fonts() {
         setContentView(R.layout.saved_fonts);
-
         Button font1 = (Button) findViewById(R.id.font1);
-
         font1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                setContentView(R.layout.loading_bar_screen);
-                final ProgressBar progress = (ProgressBar) findViewById(R.id.progressBar);
-
-                ObjectAnimator.ofInt(progress, "progress", 100)
-                        .setDuration(3000)
-                        .start();
-                new Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        /* Create an Intent that will load the fonts page after the loading bar. */
-                        setContentView(R.layout.loading);
-
-                    }
-                }, 4000);
+                characters();
             }
         });
-
-
-
 
     }
 

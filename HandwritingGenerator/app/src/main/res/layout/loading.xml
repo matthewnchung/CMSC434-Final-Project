@@ -211,7 +211,7 @@
         app:srcCompat="@drawable/a_" />
 
     <Button
-        android:id="@+id/back"
+        android:id="@+id/back_share"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
@@ -231,4 +231,13 @@
         android:layout_marginEnd="25dp"
         android:layout_marginRight="25dp"
         android:text="Share" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp"
+        android:text="Font ###" />
 </RelativeLayout>
