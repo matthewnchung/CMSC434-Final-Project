@@ -29,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
         myImage = (ImageView) findViewById(R.id.myImage);
         button = (Button) findViewById(R.id.button);
         saved_fonts = (Button) findViewById(R.id.saved_fonts);
+        Button profile = (Button) findViewById(R.id.profile);
         saved_fonts.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -39,6 +40,12 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 takePicture();
+            }
+        });
+        profile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                profile();
             }
         });
     }
@@ -80,6 +87,16 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    private void profile() {
+        setContentView(R.layout.profile);
+        Button back_profile = (Button) findViewById(R.id.back_profile);
+        back_profile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                setContentView(R.layout.activity_main);
+            }
+        });
+    }
     private void share() {
         setContentView(R.layout.share);
         Button back_share = (Button) findViewById(R.id.back_share);
@@ -101,7 +118,6 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
-
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
